@@ -9,7 +9,7 @@ export interface ApiSettings {
 }
 
 /** The main class of the SDK to contact the API. */
-export class RenardSdk {
+export default class RenardSdk {
   /** Main API route of the SDK. */
   public api;
   public axios;

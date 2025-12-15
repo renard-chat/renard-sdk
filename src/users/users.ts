@@ -1,4 +1,4 @@
-import type { ApiSettings, RenardSdk } from "..";
+import type RenardSdk from "..";
 import auth from "./auth";
 
 export default (reardSdk: RenardSdk) => {
