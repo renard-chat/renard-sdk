@@ -1,9 +1,11 @@
 import type RenardSdk from "..";
+import accounts from "./accounts";
 import auth from "./auth";
 
-export default (reardSdk: RenardSdk) => {
+export default (renardSdk: RenardSdk) => {
   return {
     /** Authentification to Renard */
-    auth: auth(reardSdk),
+    auth: auth(renardSdk),
+    accounts: accounts(renardSdk),
   };
 };

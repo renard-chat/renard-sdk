@@ -1,4 +1,5 @@
 import type RenardSdk from "..";
+import { getToken, useToken } from "../utils/requests";
 
 interface LoginParams {
   email: string;
@@ -9,6 +10,10 @@ interface RegisterParams {
   email: string;
   password: string;
   username: string;
+}
+
+interface CheckSessionParams {
+  sessionToken?: string;
 }
 
 interface AuthResponse {
@@ -43,6 +48,19 @@ export default (renardSdk: RenardSdk) => {
       return {
         sessionToken: data.sessionToken,
       };
+    },
+    checkSession: async ({
+      sessionToken,
+    }: CheckSessionParams): Promise<boolean> => {
+      try {
+        const result = await renardSdk.axios.get(
+          "/users/auth/check-session",
+          useToken(sessionToken, renardSdk)
+        );
+        return result.status === 200;
+      } catch (e) {
+        return false;
+      }
     },
   };
 };
